@@ -6,7 +6,6 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927 && \
     apt-get update && \
     apt-get install -y mongodb-org-shell mongodb-org-tools python-pip && \
     echo "mongodb-org-shell hold" | dpkg --set-selections && \
-    echo "mongodb-org-tools hold" | dpkg --set-selections && \
     pip install awscli && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
