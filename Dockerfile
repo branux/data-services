@@ -1,8 +1,8 @@
 FROM ubuntu:14.04
 MAINTAINER Gustavo Stor <gustavostor@gmail.com>
 
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
-    echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.0.list && \
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927 && \
+    echo "deb http://repo.mo    ngodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.2 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.2.list && \
     apt-get update && \
     apt-get install -y mongodb-org-shell mongodb-org-tools python-pip && \
     echo "mongodb-org-shell hold" | dpkg --set-selections && \
@@ -13,9 +13,12 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
     rm -rf /tmp/* && \
     mkdir /backup
 
+ENV CRON_TIME="0 7 * * *"
+
 VOLUME ["/backup"]
 
+RUN mkdir -p /src
 ADD . /src
 WORKDIR /src
 
-ENTRYPOINT ["/src/entrypoint.sh"]
+CMD bash /src/entrypoint.sh
