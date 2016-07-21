@@ -16,6 +16,8 @@ ENV CRON_TIME="0 7 * * *"
 
 VOLUME ["/backup"]
 
+RUN mkdir -p /src
+ADD . /src
 WORKDIR /src
 
 CMD bash /src/entrypoint.sh
