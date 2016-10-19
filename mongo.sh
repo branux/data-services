@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BACKUP_NAME="$(date +%Y.%m.%d.%H%M%S)"
-BACKUP_CMD="mongodump --archive=/backup/${BACKUP_NAME} --host mongo --port 27017"
+BACKUP_CMD="mongodump --host mongo --port 27017 --archive=/backup/${BACKUP_NAME} --gzip"
 echo ${BACKUP_CMD}
 MAX_BACKUPS=${MAX_BACKUPS}
 
